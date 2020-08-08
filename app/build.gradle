@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion = rootProject.ext.compileSdkVersion
+    buildToolsVersion = rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.azlll.framework.app"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled = true
+
+        ndk {
+            abiFilters rootProject.ext.ndkAbi
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+
+    implementation project(path: ':azframework')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportSdkVersion"
+    implementation "com.android.support:design:$rootProject.ext.supportSdkVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportSdkVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.supportConstraintLayoutSdkVersion"
+//  Demo 依赖的图片加载库
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+//  Dex 多分包依赖
+    implementation "com.android.support:multidex:$rootProject.ext.multidexSdkVersion"
+
+    //沉浸式状态栏 https://github.com/jgilfelt/SystemBarTint
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+//    //顶部导航栏
+//    implementation project(path: ':xtablayoutlibrary')
+    //图片选择器 https://github.com/donkingliang/ImageSelector
+    implementation 'com.github.donkingliang:ImageSelector:1.9.2'
+
+
+    // https://github.com/scwang90/SmartRefreshLayout
+    implementation  'com.scwang.smart:refresh-layout-kernel:2.0.1'      //核心必须依赖
+    implementation  'com.scwang.smart:refresh-header-classics:2.0.1'    //经典刷新头
+    implementation  'com.scwang.smart:refresh-header-radar:2.0.1'       //雷达刷新头
+    implementation  'com.scwang.smart:refresh-header-falsify:2.0.1'     //虚拟刷新头
+    implementation  'com.scwang.smart:refresh-header-material:2.0.1'    //谷歌刷新头
+    implementation  'com.scwang.smart:refresh-header-two-level:2.0.1'   //二级刷新头
+    implementation  'com.scwang.smart:refresh-footer-ball:2.0.1'        //球脉冲加载
+    implementation  'com.scwang.smart:refresh-footer-classics:2.0.1'    //经典加载
+}

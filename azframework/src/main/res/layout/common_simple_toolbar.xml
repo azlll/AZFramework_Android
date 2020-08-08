@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/actionBarSize"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp">
+    <RelativeLayout
+        android:id="@+id/relative_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/relative_layout_left">
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="?android:attr/actionModeCloseDrawable"
+                android:paddingLeft="10dp"
+                android:paddingRight="14dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"/>
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="30dp"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_back"
+                app:srcCompat="@android:drawable/btn_dialog"
+                android:paddingRight="14dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/relative_layout_left"
+            android:layout_marginRight="45dp"
+            android:layout_marginLeft="5dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:text="标题"
+            android:textColor="@android:color/black"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/iv_function"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="8dp"
+            android:visibility="gone"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    </RelativeLayout>
+</android.support.v7.widget.Toolbar>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--箭头控件的风格-->
+    <declare-styleable name="ArrowView">
+        <attr name="arrowType">
+            <enum name="noDash" value="0"/>
+            <enum name="noDashDouble" value="1"/>
+            <enum name="dash" value="2"/>
+        </attr>
+        <attr name="arrowNoDashGravity">
+            <enum name="forward" value="1"/>
+            <enum name="center" value="2"/>
+            <enum name="backward" value="3"/>
+        </attr>
+        <attr name="arrowWidth" format="dimension"/>
+        <attr name="arrowColor" format="color"/>
+        <attr name="arrowDirection">
+            <enum name="left" value="1"/>
+            <enum name="up" value="2"/>
+            <enum name="right" value="3"/>
+            <enum name="down" value="4"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

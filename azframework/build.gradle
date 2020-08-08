@@ -1,0 +1,111 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        vectorDrawables.useSupportLibrary = true
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportSdkVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.supportConstraintLayoutSdkVersion"
+    // 官方RecyclerView
+    //com.android.support:recyclerview-v7:28.0.0使用support版本 ，androidx.recyclerview:recyclerview:1.1.0使用AndroidX版本
+    api "com.android.support:recyclerview-v7:$rootProject.ext.supportSdkVersion"
+    // Android开发人员必用的工具类 https://blankj.com/2016/07/31/android-utils-code/
+    //com.blankj:utilcode:1.25.9使用support版本，com.blankj:utilcodex:1.26.0使用AndroidX版本
+    api ('com.blankj:utilcode:1.25.9'){
+        exclude group: 'com.android.support'
+    }
+    // android官方示例的权限判断https://github.com/googlesamples/easypermissions
+    //2.0.0使用support版本 ，3.0.0使用AndroidX版本
+    api ('pub.devrel:easypermissions:2.0.0'){
+        exclude group: 'com.android.support'
+    }
+    // 事件通知https://github.com/greenrobot/EventBus
+    api ('org.greenrobot:eventbus:3.2.0'){
+        exclude group: 'com.android.support'
+    }
+    // okhttp  https://github.com/square/okhttp
+    api ('com.squareup.okhttp3:okhttp:3.11.0'){
+        exclude group: 'com.android.support'
+    }
+    // 腾讯出品快速轻量级的KeyValue存储组件https://github.com/tencent/mmkv
+    //1.0.19使用support版本，1.1.0使用AndroidX版本
+    api ('com.tencent:mmkv-static:1.0.19'){
+        exclude group: 'com.android.support'
+    }
+    // 圆形 ImageView
+    api ('de.hdodenhof:circleimageview:3.0.1'){
+        exclude group: 'com.android.support'
+    }
+    //开源照相和图片选择框架PictureSelector https://github.com/LuckSiege/PictureSelector
+//    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.2'
+//    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.5'
+    //Glide加载引擎
+    //4.3.1使用的是support版本，4.11.0使用AndroidX版本
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    //指定版本：zbar扫描快，zxing可以生成和识别本地:https://github.com/bertsir/zBarLibary
+    api ('cn.bertsir.zbarLibary:zbarlibary:1.4.2') {
+        exclude group: 'com.android.support'
+    }
+    //https://github.com/JackLiaoJH/ImageSelect
+//    api 'com.jhworks.library:ImageSelect:1.1.1'
+
+    // https://www.jianshu.com/p/b343fcff51b0
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.ext.baseRecyclerViewAdapterHelperVersion"
+}
+
+
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        // 配置本地仓库路径，项目根目录下的repository目录中
+//        repository(url: uri('http://192.168.1.2:8899/repository/wzj')) {
+//            //nexus登录默认用户名和密码
+//            authentication(userName: "commit", password: "123456")
+//        }
+//        pom.groupId = "com.azlll.framework"// 唯一标识（通常为模块包名，也可以任意）
+//        pom.artifactId = "framework-support" // 项目名称（通常为类库模块名称，也可以任意）
+//        pom.version = "0.0.1" // 版本号
+//
+//        // 使用方式：
+////        // 公司私服
+////        maven { url 'http://192.168.1.2:8899/repository/maven-public/'}
+////        implementation 'com.zbb:framework:0.0.1'
+//
+//    }
+//}
