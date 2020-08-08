@@ -1,2 +1,2 @@
 # AZFramework_Android
-本人在工作中提炼出的适合快速开发的Android框架，包含各种好用的功能
+一个适合快速开发的Android框架，包含各种好用的功能，目前仅支持support包，AndroidX正在计划中
