@@ -1,6 +1,6 @@
 package com.azlll.framework;
 
-public class ZbbFrameworkConfig {
+public class AZFrameworkConfig {
 
     /** 网络超时时间（单位：毫秒） */
     private long networkTimeout = 10 * 1000;
@@ -12,7 +12,7 @@ public class ZbbFrameworkConfig {
     /** 是否debug模式 */
     private boolean isDebug = false;
 
-    public ZbbFrameworkConfig(boolean isDebug){
+    public AZFrameworkConfig(boolean isDebug){
         this.isDebug = isDebug;
     }
 

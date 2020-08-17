@@ -5,16 +5,16 @@ import android.webkit.CookieManager;
 
 import com.azlll.framework.clock.ClockManager;
 import com.azlll.framework.device.DeviceManager;
-import com.azlll.framework.log.ZBBLog;
+import com.azlll.framework.log.AZLog;
 import com.azlll.framework.network.NetworkManager;
 import com.tencent.mmkv.MMKV;
 
-public class ZbbFramework {
+public class AZFramework {
 
-    public static final String TAG = ZbbFramework.class.getSimpleName();
-    public static ZbbFramework _instance;
+    public static final String TAG = AZFramework.class.getSimpleName();
+    public static AZFramework _instance;
 
-    public static ZbbFramework init(Application application, boolean forceInit, ZbbFrameworkConfig config) {
+    public static AZFramework init(Application application, boolean forceInit, AZFrameworkConfig config) {
         // 初始化单例
         if (forceInit) {
             // 强制初始化，即为如果非null，也强制销毁，重新new
@@ -22,42 +22,42 @@ public class ZbbFramework {
                 _instance.destory();
                 _instance = null;
             }
-            _instance = new ZbbFramework(application, config);
+            _instance = new AZFramework(application, config);
         }else{
             // 非强制初始化，如果非null，直接返回instance
             if (_instance == null) {
-                _instance = new ZbbFramework(application, config);
+                _instance = new AZFramework(application, config);
             }
         }
         return _instance;
     }
 
-    public static ZbbFramework getInstance() {
+    public static AZFramework getInstance() {
         // 获取单例
         if (_instance == null){
-            ZBBLog.e(TAG, "getInstance()==> _instance IS NULL!!!");
+            AZLog.e(TAG, "getInstance()==> _instance IS NULL!!!");
         }
         return _instance;
     }
 
     private Application _application;
-    private ZbbFrameworkConfig _config;
+    private AZFrameworkConfig _config;
     private NetworkManager _networkManager;
     private ClockManager _clockManager;
     private DeviceManager _deviceManager;
 
-    public ZbbFramework(Application application, ZbbFrameworkConfig config) {
+    public AZFramework(Application application, AZFrameworkConfig config) {
 
         this._application = application;
         this._config = config;
 
         // 1、初始化日志框架
-        ZBBLog.init(application);
-        ZBBLog.setDebug(config.isDebug());
+        AZLog.init(application);
+        AZLog.setDebug(config.isDebug());
 
         // 2、初始化MMKV，使得其他Manager可以正常使用MMKV做数据存取
         String rootDir = MMKV.initialize(application);
-        ZBBLog.d(TAG, "MMKV.initialize()==> rootDir=" + rootDir);
+        AZLog.d(TAG, "MMKV.initialize()==> rootDir=" + rootDir);
 
         // 3、初始化各种管理器示例-->
         //    网络管理器
@@ -117,7 +117,7 @@ public class ZbbFramework {
         return this._application;
     }
 
-    public ZbbFrameworkConfig getConfig() {
+    public AZFrameworkConfig getConfig() {
         return this._config;
     }
 

@@ -7,9 +7,9 @@ import android.os.Build;
 import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.FileIOUtils;
 import com.blankj.utilcode.util.FileUtils;
-import com.azlll.framework.constant.ZbbCacheConstant;
-import com.azlll.framework.constant.ZbbDeviceConstant;
-import com.azlll.framework.log.ZBBLog;
+import com.azlll.framework.constant.AZCacheConstant;
+import com.azlll.framework.constant.AZDeviceConstant;
+import com.azlll.framework.log.AZLog;
 
 import java.io.File;
 import java.util.Random;
@@ -48,20 +48,20 @@ public class DeviceManager {
 
         if (EasyPermissions.hasPermissions(this.application, MUST_PERMISSIONS) == false){
             // 没有SD卡读写权限
-            ZBBLog.e(TAG, "initDeviceId()==> Please get user's permission: Manifest.permission.READ_EXTERNAL_STORAGE and Manifest.permission.WRITE_EXTERNAL_STORAGE !!!");
+            AZLog.e(TAG, "initDeviceId()==> Please get user's permission: Manifest.permission.READ_EXTERNAL_STORAGE and Manifest.permission.WRITE_EXTERNAL_STORAGE !!!");
             return false;
         }
 
 
         // 如果没有设备缓存路径，则创建路径
-        File fileDeviceCacheDir = new File(ZbbCacheConstant.DeviceCache.DEVICE_CACHE_DIR);
+        File fileDeviceCacheDir = new File(AZCacheConstant.DeviceCache.DEVICE_CACHE_DIR);
         if (!FileUtils.isFileExists(fileDeviceCacheDir)){
             // 如果缓存路径不存在，则创建路径
             fileDeviceCacheDir.mkdirs();
         }
 
         // 如果没有设备ID文件，则创建一个
-        File fileDeviceId = new File(ZbbCacheConstant.DeviceCache.DEVICE_ID_FILE_NAME);
+        File fileDeviceId = new File(AZCacheConstant.DeviceCache.DEVICE_ID_FILE_NAME);
         if (!FileUtils.isFileExists(fileDeviceId)){
             // 如果DeviceId不存在，则创建
 
@@ -78,10 +78,10 @@ public class DeviceManager {
     }
 
     public void reloadDeviceId(){
-        ZBBLog.d(TAG, "reloadDeviceId()==>");
+        AZLog.d(TAG, "reloadDeviceId()==>");
         // 当外部获取到用户权限后，外部主动调用，否则deviceId一直为null
         boolean isInitSuccess = initDeviceId();
-        ZBBLog.d(TAG, "reloadDeviceId()==>isInitSuccess=" + String.valueOf(isInitSuccess));
+        AZLog.d(TAG, "reloadDeviceId()==>isInitSuccess=" + String.valueOf(isInitSuccess));
     }
 
     public String getDeviceId() {
@@ -93,7 +93,7 @@ public class DeviceManager {
     }
 
     public String getDeviceType() {
-        return ZbbDeviceConstant.DEVICE_TYPE_ANDROID;
+        return AZDeviceConstant.DEVICE_TYPE_ANDROID;
     }
 
     public String getDeviceOsVer() {

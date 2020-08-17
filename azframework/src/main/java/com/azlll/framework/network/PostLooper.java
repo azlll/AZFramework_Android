@@ -2,7 +2,7 @@ package com.azlll.framework.network;
 
 import android.os.Handler;
 
-import com.azlll.framework.log.ZBBLog;
+import com.azlll.framework.log.AZLog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -92,7 +92,7 @@ public class PostLooper {
      */
     public void cancel(){
         this.isCancel = true;
-        ZBBLog.d(TAG, "PostLooper is cancel...");
+        AZLog.d(TAG, "PostLooper is cancel...");
     }
 
     public void addHistory(PostHistory history) {

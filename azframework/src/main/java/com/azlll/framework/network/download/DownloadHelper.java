@@ -1,12 +1,11 @@
 package com.azlll.framework.network.download;
 
 import android.app.Application;
-import android.os.Environment;
 import android.os.Handler;
 
 import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.StringUtils;
-import com.azlll.framework.log.ZBBLog;
+import com.azlll.framework.log.AZLog;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,7 +47,7 @@ public class DownloadHelper {
 
     private Thread initDownloadThread() {
 
-        ZBBLog.d(TAG, "initDownloadThread()==>");
+        AZLog.d(TAG, "initDownloadThread()==>");
 
         this.isDownloadThreadRunning = false;
         if (this.downloadThread != null) {
@@ -59,7 +58,7 @@ public class DownloadHelper {
         this.downloadThread = new Thread() {
             @Override
             public void run() {
-                ZBBLog.d(TAG, "start download thread success... start waiting download task...");
+                AZLog.d(TAG, "start download thread success... start waiting download task...");
 
                 while (isDownloadThreadRunning) {
                     try {
@@ -89,7 +88,7 @@ public class DownloadHelper {
     }
 
     private void processTask(final DownloadTask task) {
-        ZBBLog.d(TAG, "processTask()==> start process a task...  thread=" + Thread.currentThread().toString());
+        AZLog.d(TAG, "processTask()==> start process a task...  thread=" + Thread.currentThread().toString());
 
 
         Request.Builder builder = new Request.Builder()
@@ -114,7 +113,7 @@ public class DownloadHelper {
                 if (StringUtils.isEmpty(errMsg)) {
                     errMsg = e.getLocalizedMessage();
                 }
-                ZBBLog.e(TAG, "processTask.onFailure()==> errMsg=" + errMsg);
+                AZLog.e(TAG, "processTask.onFailure()==> errMsg=" + errMsg);
 
                 task.setStatus(EnumDownloadStatus.ERROR);
                 task.setException(e);
@@ -294,7 +293,7 @@ public class DownloadHelper {
                             fos.close();
                         }
                     }catch (IOException e) {
-                        ZBBLog.e(TAG, e.getMessage());
+                        AZLog.e(TAG, e.getMessage());
                     }
                 }
             }

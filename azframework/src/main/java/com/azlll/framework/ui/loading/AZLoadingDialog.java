@@ -12,18 +12,18 @@ import android.support.v4.widget.ContentLoadingProgressBar;
 
 import com.azlll.framework.R;
 
-public class ZBBLoadingDialog extends Dialog {
-    public ZBBLoadingDialog(@NonNull Context context) {
+public class AZLoadingDialog extends Dialog {
+    public AZLoadingDialog(@NonNull Context context) {
         super(context);
         initView();
     }
 
-    public ZBBLoadingDialog(@NonNull Context context, int themeResId) {
+    public AZLoadingDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);
         initView();
     }
 
-    protected ZBBLoadingDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+    protected AZLoadingDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         initView();
     }

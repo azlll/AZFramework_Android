@@ -7,8 +7,8 @@ import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.FileIOUtils;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.NetworkUtils;
-import com.azlll.framework.constant.ZbbCacheConstant;
-import com.azlll.framework.log.ZBBLog;
+import com.azlll.framework.constant.AZCacheConstant;
+import com.azlll.framework.log.AZLog;
 import com.azlll.framework.network.download.DownloadHelper;
 import com.azlll.framework.network.download.DownloadTask;
 
@@ -96,7 +96,7 @@ public class NetworkManager {
         this.networkTimeout = networkTimeout;
         this.networkRawCacheTime = networkRawCacheTime;
         this.networkStroageCacheTime = networkStroageCacheTime;
-        this.networkStorageFolderPath = application.getExternalCacheDir().getAbsolutePath() + File.separator + ZbbCacheConstant.NetworkCache.HTTP_API_CACHE_DIR;
+        this.networkStorageFolderPath = application.getExternalCacheDir().getAbsolutePath() + File.separator + AZCacheConstant.NetworkCache.HTTP_API_CACHE_DIR;
         File fileStorageFolder = new File(this.networkStorageFolderPath);
         if (!FileUtils.isFileExists(fileStorageFolder)) {
             // 如果缓存路径不存在，则创建路径
@@ -420,11 +420,11 @@ public class NetworkManager {
 
             case DELETE:
                 // TODO:
-                ZBBLog.e(TAG, "request()==> method DELETE is not impl!!!");
+                AZLog.e(TAG, "request()==> method DELETE is not impl!!!");
                 return;
 
             default:
-                ZBBLog.e(TAG, "request()==> requestEntity.getMethod() is invalid!!! method=" + requestEntity.getMethod());
+                AZLog.e(TAG, "request()==> requestEntity.getMethod() is invalid!!! method=" + requestEntity.getMethod());
                 return;
         }
         // 添加Header
@@ -474,7 +474,7 @@ public class NetworkManager {
                         @Override
                         public void run() {
                             long consumeTime = (endRequestTime - startRequestTime);
-                            ZBBLog.w(TAG, "onRequestFinishListener.onServerError()==> api=" + request.url().toString()
+                            AZLog.w(TAG, "onRequestFinishListener.onServerError()==> api=" + request.url().toString()
                                     + ", consumeTimeMs=" + String.valueOf(consumeTime) + "ms"
                                     + ", httpStatus=" + error.getHttpStatusCode()
                                     + ", bodyString=" + error.getBodyString()
@@ -510,7 +510,7 @@ public class NetworkManager {
                     @Override
                     public void run() {
                         long consumeTime = (endRequestTime - startRequestTime);
-                        ZBBLog.d(TAG, "onRequestFinishListener.onResponse()==> api=" + request.url().toString()
+                        AZLog.d(TAG, "onRequestFinishListener.onResponse()==> api=" + request.url().toString()
                                 + ", consumeTimeMs=" + String.valueOf(consumeTime) + "ms"
                                 + ", responseJson=" + responseJson);
                         onRequestFinishListener.onResponse(responseJson, consumeTime);
@@ -527,7 +527,7 @@ public class NetworkManager {
                     @Override
                     public void run() {
                         long consumeTime = (endRequestTime - startRequestTime);
-                        ZBBLog.e(TAG, "onRequestFinishListener.onNetworkError()==> api=" + request.url().toString()
+                        AZLog.e(TAG, "onRequestFinishListener.onNetworkError()==> api=" + request.url().toString()
                                 + ", consumeTimeMs=" + String.valueOf(consumeTime) + "ms"
                                 + ", error=" + error.toString());
                         onRequestFinishListener.onNetworkError(error, consumeTime);
@@ -726,11 +726,11 @@ public class NetworkManager {
 
             case DELETE:
                 // TODO:
-                ZBBLog.e(TAG, "request()==> method DELETE is not impl!!!");
+                AZLog.e(TAG, "request()==> method DELETE is not impl!!!");
                 return;
 
             default:
-                ZBBLog.e(TAG, "request()==> requestEntity.getMethod() is invalid!!! method=" + requestEntity.getMethod());
+                AZLog.e(TAG, "request()==> requestEntity.getMethod() is invalid!!! method=" + requestEntity.getMethod());
                 return;
         }
         // 添加Header
@@ -779,7 +779,7 @@ public class NetworkManager {
                         @Override
                         public void run() {
                             long consumeTime = (endRequestTime - startRequestTime);
-                            ZBBLog.w(TAG, "onRequestAndCacheFinishListener.onServerError()==> api=" + request.url().toString()
+                            AZLog.w(TAG, "onRequestAndCacheFinishListener.onServerError()==> api=" + request.url().toString()
                                     + ", consumeTimeMs=" + String.valueOf(consumeTime) + "ms"
                                     + ", httpStatus=" + error.getHttpStatusCode()
                                     + ", bodyString=" + error.getBodyString()
@@ -814,7 +814,7 @@ public class NetworkManager {
                     @Override
                     public void run() {
                         long consumeTime = (endRequestTime - startRequestTime);
-                        ZBBLog.d(TAG, "onRequestAndCacheFinishListener.onResponseFromNetwork()==> api=" + request.url().toString()
+                        AZLog.d(TAG, "onRequestAndCacheFinishListener.onResponseFromNetwork()==> api=" + request.url().toString()
                                 + ", consumeTimeMs=" + String.valueOf(consumeTime) + "ms"
                                 + ", responseJson=" + responseJson);
                         boolean isNeedCache = onRequestAndCacheFinishListener.onResponseFromNetwork(responseJson, (endRequestTime - startRequestTime));
@@ -836,7 +836,7 @@ public class NetworkManager {
                     @Override
                     public void run() {
                         long consumeTime = (endRequestTime - startRequestTime);
-                        ZBBLog.e(TAG, "onRequestAndCacheFinishListener.onNetworkError()==> api=" + request.url().toString()
+                        AZLog.e(TAG, "onRequestAndCacheFinishListener.onNetworkError()==> api=" + request.url().toString()
                                 + ", consumeTimeMs=" + String.valueOf(consumeTime) + "ms"
                                 + ", error=" + error.toString());
                         onRequestAndCacheFinishListener.onNetworkError(error, consumeTime);
@@ -909,7 +909,7 @@ public class NetworkManager {
             request(requestEntity, onRequestFinishListener);
             return true;
         }else{
-            ZBBLog.e(TAG, "uploadFile()==> requestEntity.getMethod() is not post!!!! or requestEntity.getFormDataFileInfos() size is <= 0");
+            AZLog.e(TAG, "uploadFile()==> requestEntity.getMethod() is not post!!!! or requestEntity.getFormDataFileInfos() size is <= 0");
             return false;
         }
     }
@@ -1128,11 +1128,11 @@ public class NetworkManager {
     }
 
     private void traceRequestLog(RequestEntity requestEntity, String realUrl) {
-        if (!ZBBLog.isDebug()) {
+        if (!AZLog.isDebug()) {
             return;
         }
 
-        ZBBLog.d(TAG, "request()==> method=" + requestEntity.getMethod()
+        AZLog.d(TAG, "request()==> method=" + requestEntity.getMethod()
                 + ", api=" + realUrl
                 + ", header=" + calcRequestLog_header(requestEntity)
                 + ", params=" + calcRequestLog_params(requestEntity)

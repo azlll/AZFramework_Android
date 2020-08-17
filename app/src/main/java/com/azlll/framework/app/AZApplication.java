@@ -1,15 +1,14 @@
 package com.azlll.framework.app;
 
 import android.app.Activity;
-import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
 
-import com.azlll.framework.ZbbFramework;
-import com.azlll.framework.ZbbFrameworkConfig;
-import com.azlll.framework.log.ZBBLog;
+import com.azlll.framework.AZFramework;
+import com.azlll.framework.AZFrameworkConfig;
+import com.azlll.framework.log.AZLog;
 
 public class AZApplication extends MultiDexApplication {
 
@@ -26,8 +25,8 @@ public class AZApplication extends MultiDexApplication {
      * 初始化AZFramework
      */
     public void initAZFramework(){
-        ZbbFrameworkConfig zbbFrameworkConfig = new ZbbFrameworkConfig(BuildConfig.DEBUG);
-        ZbbFramework.init(this, true, zbbFrameworkConfig);
+        AZFrameworkConfig azFrameworkConfig = new AZFrameworkConfig(BuildConfig.DEBUG);
+        AZFramework.init(this, true, azFrameworkConfig);
 
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
 
@@ -66,9 +65,9 @@ public class AZApplication extends MultiDexApplication {
             public void onActivityDestroyed(@NonNull Activity activity) {
                 activityInstanceCount--;
                 if (activityInstanceCount == 0){
-                    ZBBLog.d(TAG, "onActivityDestroyed()==> ALL Activity is Destroyed!!!");
+                    AZLog.d(TAG, "onActivityDestroyed()==> ALL Activity is Destroyed!!!");
                     // 所有页面都退出了，做一些内存释放动作
-                    ZbbFramework.getInstance().getNetworkManager().cancenAllPostLoop();
+                    AZFramework.getInstance().getNetworkManager().cancenAllPostLoop();
                 }
             }
         });

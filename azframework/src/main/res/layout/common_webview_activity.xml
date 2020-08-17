@@ -4,7 +4,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.zbb.framework.ui.browser.utils.SimpleToolbar
+    <com.azlll.framework.ui.browser.utils.SimpleToolbar
         android:id="@+id/simple_toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -17,7 +17,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </com.zbb.framework.ui.browser.utils.SimpleToolbar>
+    </com.azlll.framework.ui.browser.utils.SimpleToolbar>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"

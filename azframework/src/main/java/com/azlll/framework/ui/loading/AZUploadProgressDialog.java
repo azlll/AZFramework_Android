@@ -16,18 +16,18 @@ import android.widget.TextView;
 
 import com.azlll.framework.R;
 
-public class ZBBUploadProgressDialog extends Dialog {
-    public ZBBUploadProgressDialog(@NonNull Context context) {
+public class AZUploadProgressDialog extends Dialog {
+    public AZUploadProgressDialog(@NonNull Context context) {
         super(context);
         initView();
     }
 
-    public ZBBUploadProgressDialog(@NonNull Context context, int themeResId) {
+    public AZUploadProgressDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);
         initView();
     }
 
-    protected ZBBUploadProgressDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+    protected AZUploadProgressDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         initView();
     }

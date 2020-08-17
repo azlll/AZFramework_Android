@@ -4,16 +4,16 @@ import android.os.Environment;
 
 import java.io.File;
 
-public class ZbbCacheConstant {
+public class AZCacheConstant {
 
     /**
-     * 早半步Framework的通用Cache目录
+     * Framework的通用Cache目录
      * Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "com.azlll.cache"
      * https://blog.csdn.net/qq_32259411/article/details/105275180
      * https://blog.csdn.net/tsdfk1455/article/details/94288585
      * 如果Target SDK > 28，请在manifest中添加android:requestLegacyExternalStorage=“true”
      */
-    public static final String ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "com.azlll.cache";
+    public static final String AZ_FRAMEWORK_EXTERNAL_CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "com.azlll.cache";
 
     /**
      * 时钟缓存相关
@@ -22,16 +22,16 @@ public class ZbbCacheConstant {
 
         /**
          * 时钟同步缓存的目录
-         * application.getFilesDir().getAbsolutePath() + File.separator + ZbbCacheConstant.ClockCache.CLOCK_CACHE_DIR
+         * application.getFilesDir().getAbsolutePath() + File.separator + AZCacheConstant.ClockCache.CLOCK_CACHE_DIR
          */
-        public static final String CLOCK_CACHE_DIR = "zbbClockManager";
+        public static final String CLOCK_CACHE_DIR = "azClockManager";
 
-        public static final String KEY_SERVER_TIME_INFO = "zbbServerTimeInfo";
+        public static final String KEY_SERVER_TIME_INFO = "azServerTimeInfo";
         public static final String SUB_KEY_SERVER_TIME_ZONE = "serverTimeZone";
         public static final String SUB_KEY_SERVER_TIME_DIFF_MILLIS = "serverTimeDiffMills";
         public static final String SUB_KEY_SERVER_TIME_CACHE_TIME = "serverTimeCacheTime";
 
-        public static final String KEY_NTP_TIME_INFO = "zbbNtpTimeInfo";
+        public static final String KEY_NTP_TIME_INFO = "azNtpTimeInfo";
     }
 
     /**
@@ -41,9 +41,9 @@ public class ZbbCacheConstant {
 
         /**
          * 设备缓存的目录
-         * ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "device"
+         * AZ_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "device"
          */
-        public static final String DEVICE_CACHE_DIR = ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "device";
+        public static final String DEVICE_CACHE_DIR = AZ_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "device";
 
         /**
          * 设备ID 文件名
@@ -73,9 +73,9 @@ public class ZbbCacheConstant {
 
         /**
          * 临时缓存的目录
-         * ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "tmp"
+         * AZ_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "tmp"
          */
-        public static final String TEMP_CACHE_DIR = ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "tmp";
+        public static final String TEMP_CACHE_DIR = AZ_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "tmp";
 
         /**
          * 临时图片的存放路径
@@ -95,9 +95,9 @@ public class ZbbCacheConstant {
 
         /**
          * 日志文件的目录
-         * ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "log"
+         * AZ_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "log"
          */
-        public static final String LOG_CACHE_DIR = ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "log";
+        public static final String LOG_CACHE_DIR = AZ_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "log";
 
     }
 
@@ -108,13 +108,13 @@ public class ZbbCacheConstant {
 
         /**
          * Apk文件的目录
-         * ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "apk"
+         * AZ_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "apk"
          */
-        public static final String APK_CACHE_DIR = ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "apk";
+        public static final String APK_CACHE_DIR = AZ_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "apk";
 
         /**
          * 增量文件的目录
-         * ZBB_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "patch"
+         * AZ_FRAMEWORK_EXTERNAL_CACHE_DIR + File.separator + "patch"
          */
         public static final String APK_PATCH_CACHE_DIR = APK_CACHE_DIR + File.separator + "patch";
 

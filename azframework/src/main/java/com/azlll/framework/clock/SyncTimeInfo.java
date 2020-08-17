@@ -1,6 +1,6 @@
 package com.azlll.framework.clock;
 
-import com.azlll.framework.constant.ZbbCacheConstant;
+import com.azlll.framework.constant.AZCacheConstant;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,9 +39,9 @@ public class SyncTimeInfo {
     public SyncTimeInfo(String jsonString) {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
-            this.serverTimeZone = jsonObject.optString(ZbbCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_ZONE);
-            this.serverTimeDiff = jsonObject.optLong(ZbbCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_DIFF_MILLIS);
-            this.serverTimeCacheTime = jsonObject.optLong(ZbbCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_CACHE_TIME);
+            this.serverTimeZone = jsonObject.optString(AZCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_ZONE);
+            this.serverTimeDiff = jsonObject.optLong(AZCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_DIFF_MILLIS);
+            this.serverTimeCacheTime = jsonObject.optLong(AZCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_CACHE_TIME);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -52,9 +52,9 @@ public class SyncTimeInfo {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put(ZbbCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_ZONE, this.serverTimeZone);
-            jsonObject.put(ZbbCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_DIFF_MILLIS, this.serverTimeDiff);
-            jsonObject.put(ZbbCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_CACHE_TIME, this.serverTimeCacheTime);
+            jsonObject.put(AZCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_ZONE, this.serverTimeZone);
+            jsonObject.put(AZCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_DIFF_MILLIS, this.serverTimeDiff);
+            jsonObject.put(AZCacheConstant.ClockCache.SUB_KEY_SERVER_TIME_CACHE_TIME, this.serverTimeCacheTime);
             return jsonObject.toString();
 
         } catch (JSONException e) {

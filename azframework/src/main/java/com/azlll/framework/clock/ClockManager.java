@@ -4,8 +4,8 @@ import android.app.Application;
 import android.os.SystemClock;
 
 import com.tencent.mmkv.MMKV;
-import com.azlll.framework.constant.ZbbCacheConstant;
-import com.azlll.framework.log.ZBBLog;
+import com.azlll.framework.constant.AZCacheConstant;
+import com.azlll.framework.log.AZLog;
 
 import java.io.File;
 import java.util.Random;
@@ -59,7 +59,7 @@ public class ClockManager {
     private SyncTimeInfo serverSyncTimeInfo = null;
 
     public ClockManager(Application application) {
-        this.cacheDir =  application.getFilesDir().getAbsolutePath() + File.separator + ZbbCacheConstant.ClockCache.CLOCK_CACHE_DIR;
+        this.cacheDir =  application.getFilesDir().getAbsolutePath() + File.separator + AZCacheConstant.ClockCache.CLOCK_CACHE_DIR;
         this.application = application;
         // 自动启动NTP时间同步
         syncNtpUtc();
@@ -84,16 +84,16 @@ public class ClockManager {
                         SntpClient sntpClient = new SntpClient();
                         int ntpServerIndex = new Random().nextInt(ARRAY_NTP_SERVER.length);// 随机取一个NTP服务器进行同步
                         String ntpServerHost = ARRAY_NTP_SERVER[ntpServerIndex];
-                        ZBBLog.d(TAG, "start sync NTP time... host=" + ntpServerHost);
+                        AZLog.d(TAG, "start sync NTP time... host=" + ntpServerHost);
                         if (sntpClient.requestTime(ntpServerHost, 10 * 1000)) {
                             // 同步成功，退出死循环
-                            ZBBLog.d(TAG, "NTP time get success!!!");
+                            AZLog.d(TAG, "NTP time get success!!!");
                             long now = sntpClient.getNtpTime() + SystemClock.elapsedRealtime() - sntpClient.getNtpTimeReference();
                             setNtpUtcTime(now);
                             break;
                         } else {
                             // 同步失败了，10秒后再试一次
-                            ZBBLog.d(TAG, "NTP time get faliure!!! retry in 10 secs...  current retry times:"
+                            AZLog.d(TAG, "NTP time get faliure!!! retry in 10 secs...  current retry times:"
                                     + String.valueOf(ntpErrorRetryCount) + "/" + String.valueOf(SYNC_NTP_MAX_RETRY_COUNT));
                             try {
                                 Thread.sleep(10 * 1000);
@@ -110,7 +110,7 @@ public class ClockManager {
                 }
             }.start();
         }else{
-            ZBBLog.w(TAG, "NTP syncing...if you want to sync ntp manually, please wait last sync loop finish...  current retry times:"
+            AZLog.w(TAG, "NTP syncing...if you want to sync ntp manually, please wait last sync loop finish...  current retry times:"
                     + String.valueOf(ntpErrorRetryCount) + "/" + String.valueOf(SYNC_NTP_MAX_RETRY_COUNT));
         }
     }
@@ -128,7 +128,7 @@ public class ClockManager {
         ntpSyncTimeInfo = new SyncTimeInfo("UTC", serverTimeDiff, curTime);
         // 将本次同步的时间保存
         MMKV kv = MMKV.defaultMMKV();
-        kv.encode(ZbbCacheConstant.ClockCache.KEY_SERVER_TIME_INFO, ntpSyncTimeInfo.toJsonString());
+        kv.encode(AZCacheConstant.ClockCache.KEY_SERVER_TIME_INFO, ntpSyncTimeInfo.toJsonString());
     }
 
     /**
@@ -155,18 +155,18 @@ public class ClockManager {
             switch (fallbackType){
                 case RETURN_LAST_CACHE_TIME:
                     MMKV kv = MMKV.defaultMMKV();
-                    if (kv.containsKey(ZbbCacheConstant.ClockCache.KEY_NTP_TIME_INFO)) {
-                        ZBBLog.w(TAG, "sync NtpTime Not yet!!! current return last sync time!!! fallbackType=" + String.valueOf(fallbackType));
-                        String jsonString = kv.decodeString(ZbbCacheConstant.ClockCache.KEY_NTP_TIME_INFO);
+                    if (kv.containsKey(AZCacheConstant.ClockCache.KEY_NTP_TIME_INFO)) {
+                        AZLog.w(TAG, "sync NtpTime Not yet!!! current return last sync time!!! fallbackType=" + String.valueOf(fallbackType));
+                        String jsonString = kv.decodeString(AZCacheConstant.ClockCache.KEY_NTP_TIME_INFO);
                         SyncTimeInfo lastServerTimeInfo = new SyncTimeInfo(jsonString);
                         return lastServerTimeInfo.getServerUnixTimeStampMillis();
                     }else{
-                        ZBBLog.w(TAG, "sync NtpTime Not yet!!! current return local time!!! fallbackType=" + String.valueOf(fallbackType));
+                        AZLog.w(TAG, "sync NtpTime Not yet!!! current return local time!!! fallbackType=" + String.valueOf(fallbackType));
                         return getLocalTime();
                     }
                 case RETURN_LOCAL_TIME:
                 default:
-                    ZBBLog.w(TAG, "sync NtpTime Not yet!!! current return local time!!! fallbackType=" + String.valueOf(fallbackType));
+                    AZLog.w(TAG, "sync NtpTime Not yet!!! current return local time!!! fallbackType=" + String.valueOf(fallbackType));
                     return getLocalTime();
             }
         }
@@ -189,7 +189,7 @@ public class ClockManager {
         serverSyncTimeInfo = new SyncTimeInfo(serverTimeZone, serverTimeDiff, curTime);
         // 将本次同步的时间保存
         MMKV kv = MMKV.defaultMMKV();
-        kv.encode(ZbbCacheConstant.ClockCache.KEY_SERVER_TIME_INFO, serverSyncTimeInfo.toJsonString());
+        kv.encode(AZCacheConstant.ClockCache.KEY_SERVER_TIME_INFO, serverSyncTimeInfo.toJsonString());
     }
 
     /**
@@ -236,18 +236,18 @@ public class ClockManager {
             switch (fallbackType){
                 case RETURN_LAST_CACHE_TIME:
                     MMKV kv = MMKV.defaultMMKV();
-                    if (kv.containsKey(ZbbCacheConstant.ClockCache.KEY_SERVER_TIME_INFO)) {
-                        ZBBLog.w(TAG, "sync ServerTime Not yet!!! current return last sync time!!! fallbackType=" + String.valueOf(fallbackType));
-                        String jsonString = kv.decodeString(ZbbCacheConstant.ClockCache.KEY_SERVER_TIME_INFO);
+                    if (kv.containsKey(AZCacheConstant.ClockCache.KEY_SERVER_TIME_INFO)) {
+                        AZLog.w(TAG, "sync ServerTime Not yet!!! current return last sync time!!! fallbackType=" + String.valueOf(fallbackType));
+                        String jsonString = kv.decodeString(AZCacheConstant.ClockCache.KEY_SERVER_TIME_INFO);
                         SyncTimeInfo lastServerTimeInfo = new SyncTimeInfo(jsonString);
                         return lastServerTimeInfo.getServerUnixTimeStampMillis();
                     }else{
-                        ZBBLog.w(TAG, "sync ServerTime Not yet!!! current return local time!!! fallbackType=" + String.valueOf(fallbackType));
+                        AZLog.w(TAG, "sync ServerTime Not yet!!! current return local time!!! fallbackType=" + String.valueOf(fallbackType));
                         return getLocalTime();
                     }
                 case RETURN_LOCAL_TIME:
                 default:
-                    ZBBLog.w(TAG, "sync ServerTime Not yet!!! current return local time!!! fallbackType=" + String.valueOf(fallbackType));
+                    AZLog.w(TAG, "sync ServerTime Not yet!!! current return local time!!! fallbackType=" + String.valueOf(fallbackType));
                     return getLocalTime();
             }
         }
@@ -263,7 +263,7 @@ public class ClockManager {
         if (isSyncedServerTime()) {
             return this.serverSyncTimeInfo.getServerTimeZone();
         }else{
-            ZBBLog.w(TAG, "sync ServerTime Not yet!!! current return local time zone!!");
+            AZLog.w(TAG, "sync ServerTime Not yet!!! current return local time zone!!");
             TimeZone timeZone = TimeZone.getDefault();
             return timeZone.getDisplayName();
         }

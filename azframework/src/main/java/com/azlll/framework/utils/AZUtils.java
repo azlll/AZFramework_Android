@@ -3,7 +3,7 @@ package com.azlll.framework.utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ZBBUtils {
+public class AZUtils {
     public static JSONObject fromJsonString(String strJson) {
         JSONObject ret = new JSONObject();
 

@@ -4,10 +4,10 @@ import android.app.Activity;
 
 public class LoadingHelper {
 
-    public static ZBBLoadingDialog showLoading(Activity activity) {
+    public static AZLoadingDialog showLoading(Activity activity) {
 
 
-        ZBBLoadingDialog dialog = new ZBBLoadingDialog(activity);
+        AZLoadingDialog dialog = new AZLoadingDialog(activity);
         dialog.setCanceledOnTouchOutside(false);
         //设置dialog弹出后会点击屏幕或物理返回键，dialog不消失
         dialog.setCancelable(false);
@@ -15,7 +15,7 @@ public class LoadingHelper {
         return dialog;
     }
 
-    public static void hideLoading(ZBBLoadingDialog dialog) {
+    public static void hideLoading(AZLoadingDialog dialog) {
         if (dialog == null) {
             return;
         }

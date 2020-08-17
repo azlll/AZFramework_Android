@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  *
  */
-public final class ZBBLog {
+public final class AZLog {
 
     /**
      * 标识当前是否Debug模式，默认false
@@ -19,7 +19,7 @@ public final class ZBBLog {
     private static boolean _isDebug = false;
     private static String _logStorageFolderPath = "";
 
-    private ZBBLog() {
+    private AZLog() {
     }
 
     public static void init(Application application) {
@@ -106,28 +106,28 @@ public final class ZBBLog {
     // ------------------新增Log写入文件的方法-----------------
 
     public static void d2f(String fileName, String tag, String message) {
-        ZBBLog.d(tag, message);
-        ZBBLog.writeLog2File(fileName, tag, message);
+        AZLog.d(tag, message);
+        AZLog.writeLog2File(fileName, tag, message);
     }
 
     public static void e2f(String fileName, String tag, String message) {
-        ZBBLog.e(tag, message);
-        ZBBLog.writeLog2File(fileName, tag, message);
+        AZLog.e(tag, message);
+        AZLog.writeLog2File(fileName, tag, message);
     }
 
     public static void v2f(String fileName, String tag, String message) {
-        ZBBLog.v(tag, message);
-        ZBBLog.writeLog2File(fileName, tag, message);
+        AZLog.v(tag, message);
+        AZLog.writeLog2File(fileName, tag, message);
     }
 
     public static void i2f(String fileName, String tag, String message) {
-        ZBBLog.i(tag, message);
-        ZBBLog.writeLog2File(fileName, tag, message);
+        AZLog.i(tag, message);
+        AZLog.writeLog2File(fileName, tag, message);
     }
 
     public static void w2f(String fileName, String tag, String message) {
-        ZBBLog.w(tag, message);
-        ZBBLog.writeLog2File(fileName, tag, message);
+        AZLog.w(tag, message);
+        AZLog.writeLog2File(fileName, tag, message);
     }
 
     private static void writeLog2File(String fileName, String tag, String message){

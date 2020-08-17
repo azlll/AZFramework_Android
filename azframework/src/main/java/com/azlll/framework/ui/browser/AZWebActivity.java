@@ -25,7 +25,7 @@ import android.widget.ProgressBar;
 import com.blankj.utilcode.util.GsonUtils;
 import com.bumptech.glide.Glide;
 import com.azlll.framework.R;
-import com.azlll.framework.log.ZBBLog;
+import com.azlll.framework.log.AZLog;
 import com.azlll.framework.ui.browser.utils.SimpleToolbar;
 
 //import com.luck.picture.lib.PictureSelector;
@@ -33,9 +33,9 @@ import com.azlll.framework.ui.browser.utils.SimpleToolbar;
 //import com.azlll.framework.ui.cameraphoto.widget.GlideEngine;
 
 
-public class ZbbWebActivity extends AppCompatActivity {
+public class AZWebActivity extends AppCompatActivity {
 
-    private static final String TAG = ZbbWebActivity.class.getSimpleName();
+    private static final String TAG = AZWebActivity.class.getSimpleName();
     private WebView mWebView;
     private ProgressBar progressBar;
     private AlertDialog mAlertDialog;//点击左边退出按钮提示
@@ -140,12 +140,12 @@ public class ZbbWebActivity extends AppCompatActivity {
         mWebView.setWebViewClient(myWebClient);
         mWebView.setWebChromeClient(myWebChromeClient);
         /*** webview绑定js事件 ****/
-//        mWebView.addJavascriptInterface(new MyJavaScripteInterface(ZbbWebActivity.this), "imagelistener");
+//        mWebView.addJavascriptInterface(new MyJavaScripteInterface(AZWebActivity.this), "imagelistener");
         mWebView.addJavascriptInterface(new MyJavaScripteInterface() {
             @JavascriptInterface
             @Override
             public void openImage(String img, String[] imageUrls) {
-                ZBBLog.i("网页图片url=", GsonUtils.toJson(imageUrls));
+                AZLog.i("网页图片url=", GsonUtils.toJson(imageUrls));
 //                ToastUtils.showShort(img);
 //                selectList.clear();
 //                for (int i = 0; i < imageUrls.length; i++) {
@@ -157,7 +157,7 @@ public class ZbbWebActivity extends AppCompatActivity {
 //                     * 调用PictureSelector查看网页图片
 //                     * 预览图片
 //                     */
-//                    PictureSelector.create(ZbbWebActivity.this)
+//                    PictureSelector.create(AZWebActivity.this)
 //                            .themeStyle(R.style.picture_default_style)
 //                            .isNotPreviewDownload(true)
 //                            .loadImageEngine(GlideEngine.createGlideEngine()) // 请参考Demo GlideEngine.java
@@ -176,7 +176,7 @@ public class ZbbWebActivity extends AppCompatActivity {
 //                     * 调用PictureSelector查看网页图片
 //                     * 预览图片
 //                     */
-//                    PictureSelector.create(ZbbWebActivity.this)
+//                    PictureSelector.create(AZWebActivity.this)
 //                            .themeStyle(R.style.picture_default_style)
 //                            .isNotPreviewDownload(true)
 //                            .loadImageEngine(GlideEngine.createGlideEngine()) // 请参考Demo GlideEngine.java
@@ -232,7 +232,7 @@ public class ZbbWebActivity extends AppCompatActivity {
                     mWebView.goBack();//返回上个页面
                     return;
                 } else {
-                    ZbbWebActivity.this.finish();
+                    AZWebActivity.this.finish();
                 }
             }
         });
@@ -252,7 +252,7 @@ public class ZbbWebActivity extends AppCompatActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            ZBBLog.i("url=",url);
+            AZLog.i("url=",url);
         }
 
         @Override
@@ -324,7 +324,7 @@ public class ZbbWebActivity extends AppCompatActivity {
      */
     private void setResultCode(){
         setResult(REQUEST_CODE_BY_ADVERTISING_REQUEST_ACTIVITY);
-        ZbbWebActivity.this.finish();
+        AZWebActivity.this.finish();
     }
 
     /**
@@ -394,7 +394,7 @@ public class ZbbWebActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Glide.get(ZbbWebActivity.this).clearDiskCache();//清理磁盘缓存需要在子线程中执行
+                Glide.get(AZWebActivity.this).clearDiskCache();//清理磁盘缓存需要在子线程中执行
             }
         }).start();
         Glide.get(this).clearMemory();//清理内存缓存可以在UI主线程中进行

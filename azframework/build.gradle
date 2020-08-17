@@ -103,9 +103,9 @@ dependencies {
 //        pom.version = "0.0.1" // 版本号
 //
 //        // 使用方式：
-////        // 公司私服
+////        // 私服
 ////        maven { url 'http://192.168.1.2:8899/repository/maven-public/'}
-////        implementation 'com.zbb:framework:0.0.1'
+////        implementation 'com.azlll:framework:0.0.1'
 //
 //    }
 //}
