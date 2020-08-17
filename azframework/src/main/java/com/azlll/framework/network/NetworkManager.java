@@ -9,6 +9,8 @@ import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.azlll.framework.constant.ZbbCacheConstant;
 import com.azlll.framework.log.ZBBLog;
+import com.azlll.framework.network.download.DownloadHelper;
+import com.azlll.framework.network.download.DownloadTask;
 
 import org.json.JSONObject;
 
@@ -62,6 +64,8 @@ public class NetworkManager {
     private Handler mainHandler = null;
     /* OkHttpClient */
     private OkHttpClient okHttpClient = null;
+    /* 下载任务的实现 */
+    private DownloadHelper downloadHelper = null;
     /**
      * 网络超时时间（单位：毫秒）
      */
@@ -130,6 +134,7 @@ public class NetworkManager {
         mapResponseCache = new HashMap<>();
 
         mapPostLooper = new HashMap<>();
+        downloadHelper = new DownloadHelper(application, mainHandler);
     }
 
     public boolean isConnected() {
@@ -1209,5 +1214,25 @@ public class NetworkManager {
                 return stringBuilder.toString();
             }
         }
+    }
+
+
+    /**
+     * 下载文件
+     * @param task 下载任务的实体
+     * @param onDownloadListener
+     * @return DownloadTask
+     */
+    public void download(
+              DownloadTask task
+            , DownloadTask.OnDownloadListener onDownloadListener) {
+
+        task.setContext(application);
+        task.setOnDownloadListener(onDownloadListener);
+        downloadHelper.addToDownloadQueue(task);
+    }
+
+    public void cancenAllDownloadTask() {
+        downloadHelper.cancenAllDownloadTask();
     }
 }
