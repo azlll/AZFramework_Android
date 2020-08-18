@@ -182,7 +182,7 @@ public class Api {
         requestEntity.addParamToBody("params1", 123); // 可选，在请求body添加自定义key/value
         requestEntity.addParamToBody("params2", "string"); // 可选，指在请求body添加自定义key/value
 
-        ZbbFramework.getInstance().getNetworkManager().request(requestEntity, new RequestEntity.OnRequestFinishListener() {
+        AZFramework.getInstance().getNetworkManager().request(requestEntity, new RequestEntity.OnRequestFinishListener() {
             @Override
             public void onResponse(String responseJson, long consumeTime) {
                 // do nothings...
@@ -210,7 +210,7 @@ public class Api {
         loopSettings.setLoopCount(10); // 本请求循环次数，仅在LoopMode=SPECIFIED时生效，默认10次
         loopSettings.setLoopInterval(1 * 1000); // 每次循环请求的间隔，单位毫秒，默认10秒
 
-        NetworkManager networkManager = ZbbFramework.getInstance().getNetworkManager();
+        NetworkManager networkManager = AZFramework.getInstance().getNetworkManager();
 
         UUID uuid = networkManager.requestWithLoop(requestEntity, loopSettings, new RequestEntity.OnLoopRequestFinishListener() {
             @Override
@@ -255,7 +255,7 @@ public class Api {
         requestEntity.setRawCacheTime(2 * 1000); // 内存缓存时间，默认10秒，单位毫秒
         requestEntity.setStorageCacheTime(10 * 24 * 3600 * 1000); // 本地文件缓存时间，默认10天，单位毫秒
 
-        NetworkManager networkManager = ZbbFramework.getInstance().getNetworkManager();
+        NetworkManager networkManager = AZFramework.getInstance().getNetworkManager();
         networkManager.requestWithCache(requestEntity, new RequestEntity.OnRequestAndCacheFinishListener() {
 
             @Override
@@ -321,7 +321,7 @@ public class Api {
         loopSettings.setLoopMode(LoopSettings.EnumLoopMode.INFINITY);
         loopSettings.setLoopInterval(5 * 1000);
 
-        NetworkManager networkManager = ZbbFramework.getInstance().getNetworkManager();
+        NetworkManager networkManager = AZFramework.getInstance().getNetworkManager();
         UUID uuidOnlineListLoopRequest = networkManager.requestWithLoopAndCache(requestEntity, loopSettings, new RequestEntity.OnLoopRequestAndCacheFinishListener() {
 
             @Override
@@ -448,7 +448,7 @@ public enum EnumDownloadDestinationType {
         RequestEntity requestEntity = new RequestEntity(Api.UPLOAD_AVATAR);
         requestEntity.addFormDataFile(要上传的file对象, 接口定义的formData-key, 文件类型如：image/jpeg);
 
-        ZbbFramework.getInstance().getNetworkManager().uploadFile(requestEntity, new RequestEntity.OnRequestFinishListener() {
+        AZFramework.getInstance().getNetworkManager().uploadFile(requestEntity, new RequestEntity.OnRequestFinishListener() {
             @Override
             public void onResponse(String responseJson, long consumeTime) {
                 
