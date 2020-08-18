@@ -67,7 +67,7 @@ public class AZApplication extends MultiDexApplication {
                 if (activityInstanceCount == 0){
                     AZLog.d(TAG, "onActivityDestroyed()==> ALL Activity is Destroyed!!!");
                     // 所有页面都退出了，做一些内存释放动作
-                    AZFramework.getInstance().getNetworkManager().cancenAllPostLoop();
+                    AZFramework.getInstance().destory();
                 }
             }
         });

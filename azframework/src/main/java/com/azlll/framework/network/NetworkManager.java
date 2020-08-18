@@ -897,7 +897,7 @@ public class NetworkManager {
      * @param onRequestFinishListener
      * @return 是否可成功执行上传
      */
-    private boolean uploadFile(
+    public boolean uploadFile(
             RequestEntity requestEntity,
             final RequestEntity.OnRequestFinishListener onRequestFinishListener) {
 

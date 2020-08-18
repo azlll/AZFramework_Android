@@ -70,7 +70,7 @@
 ### 2-2）JwtToken
 - 标准的JwtToken字符串与对象的转换
 
-### 2-3）ActivityManager活动管理（暂未完成）
+### 2-3）ActivityStackManager活动管理
 - App中全局的Activity管理
 - App的前后台切换管理
 

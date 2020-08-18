@@ -111,6 +111,7 @@ public class AZFramework {
      * */
     public void destory() {
         _networkManager.cancenAllPostLoop();
+        _networkManager.cancenAllDownloadTask();
     }
 
     public Application getApplication() {
